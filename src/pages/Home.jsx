@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ContactList } from "../components/ContactsList.jsx";
+import { Card } from "../components/Card.jsx";
 import { getContacts } from "../servicesApi/contactsApi.js";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
@@ -22,7 +22,12 @@ export const Home = () => {
   return (
 
     <div className="text-center mt-5">
-      <ContactList store={store} />
+      <h1>Lista de contactos</h1>
+            <div className="container my-5">
+              {store.contacts.map((contact, index) => (
+                <Card key={index} contact={contact} />
+              ))}
+            </div>
     </div>
     
   );

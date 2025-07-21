@@ -3,12 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { createContacts } from "../servicesApi/contactsApi";
 
 export const FormCreateContact = () => {
-  const [newContact, setNewContact] = useState("");
+  const [newContact, setNewContact] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: ''
+  });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setNewContact((prev) => ({ ...prev, [e.target.name] : e.target.value }));
+    setNewContact((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
@@ -16,9 +21,9 @@ export const FormCreateContact = () => {
 
     if (
       !newContact.name.trim() ||
-      newContact.email.trim() ||
-      newContact.phone.trim() ||
-      newContact.address.trim()
+      !newContact.email.trim() ||
+      !newContact.phone.trim() ||
+      !newContact.address.trim()
     ) {
       setMessage("Rellena todos los campos");
       return;
@@ -28,7 +33,10 @@ export const FormCreateContact = () => {
     navigate("/");
   };
 
-  
+  console.log();
+
+
+
 
   return (
     <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3">
@@ -49,6 +57,7 @@ export const FormCreateContact = () => {
           type="text"
           className="form-control"
           name="name"
+          placeholder="Nombre completo"
         />
       </div>
 
@@ -61,6 +70,7 @@ export const FormCreateContact = () => {
           type="email"
           className="form-control"
           name="email"
+          placeholder="ejemplo@gmail.com"
         />
       </div>
       <div className="mb-3">
@@ -72,6 +82,7 @@ export const FormCreateContact = () => {
           type="text"
           className="form-control"
           name="phone"
+          placeholder="+34 ...."
         />
       </div>
       <div className="mb-3">
@@ -83,6 +94,7 @@ export const FormCreateContact = () => {
           type="text"
           className="form-control"
           name="address"
+          placeholder="Dirección completa"
         />
       </div>
 
@@ -91,7 +103,7 @@ export const FormCreateContact = () => {
           Crear
         </button>
         <Link to={"/"}>
-          <button type="submit" className="btn btn-primary btn-danger">
+          <button className="btn btn-primary btn-danger">
             Cancelar
           </button>
         </Link>
