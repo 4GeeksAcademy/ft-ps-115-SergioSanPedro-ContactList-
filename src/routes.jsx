@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
+import { FormCreateContact } from "./pages/FormCreateContact";
+import { FormEditContact } from "./pages/FormEditContact";
 
 
 export const router = createBrowserRouter(
@@ -22,7 +24,9 @@ export const router = createBrowserRouter(
 
         {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
         <Route path= "/" element={<Home />} />
-        
+        <Route path= "/create-contact" element={<FormCreateContact />} />
+        <Route path= "/edit-contact/:id" element={<FormEditContact />} />
+
       </Route>
     )
 );

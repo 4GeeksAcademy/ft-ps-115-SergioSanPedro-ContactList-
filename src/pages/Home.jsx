@@ -1,14 +1,29 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
+import { useEffect } from "react";
 import { ContactList } from "../components/ContactsList.jsx";
+import { getContacts } from "../servicesApi/contactsApi.js";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const Home = () => {
+  const { store, dispatch } = useGlobalReducer();
 
-  const {store, dispatch} =useGlobalReducer()
+  const extraerData = async () => {
+    const dataContext = await getContacts();
 
-	return (
-		<div className="text-center mt-5">
-			<ContactList/>
-		</div>
-	);
-}; 
+    dispatch({
+      type: "addContacts",
+      payload: dataContext,
+    });
+  };
+
+  useEffect(() => {
+    extraerData();
+  }, []);
+
+  return (
+
+    <div className="text-center mt-5">
+      <ContactList store={store} />
+    </div>
+    
+  );
+};
