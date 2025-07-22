@@ -25,7 +25,7 @@ export const Home = () => {
       <h1>Lista de contactos</h1>
             <div className="container my-5">
               {store.contacts.map((contact, index) => (
-                <Card key={index} contact={contact} />
+                <Card extraerData={extraerData} key={index} contact={contact} />
               ))}
             </div>
     </div>

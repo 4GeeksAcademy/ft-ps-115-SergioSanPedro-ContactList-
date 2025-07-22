@@ -27,26 +27,15 @@ export const FormEditContact = () => {
 
    useEffect(() => {
     if (id) {
-      // CORREGIDO: usar find() y parseInt()
-      // const contact = store.contacts.find(contact => contact.id === parseInt(id));
+      
       setEditContact(store.contacts.filter(contact => contact.id == id[0]))
       
-      // if (contact) {
-      //   // CORREGIDO: contact es un objeto, no un array
-      //   setEditContact({
-      //     name: contact.name,
-      //     email: contact.email,
-      //     phone: contact.phone,
-      //     address: contact.address
-      //   });
-        
         dispatch({
           type: "editContact",
           payload: editContact,
         });
-      // }
     }
-  }, [id, store.contacts, dispatch]);
+  }, [id]);
 
   return (
     <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3">

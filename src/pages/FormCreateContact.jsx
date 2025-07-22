@@ -42,7 +42,7 @@ export const FormCreateContact = () => {
 
 
   return (
-    <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3">
+    <form onSubmit={handleSubmit} className="container w-50 bg-info my-5 p-3 rounded">
       <h2 className="text-center mb-5">
         Introduce los datos para crear el contacto
       </h2>

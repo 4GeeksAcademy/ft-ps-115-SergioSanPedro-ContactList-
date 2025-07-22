@@ -47,3 +47,12 @@ export const editContacts = async (editContact, id, navigate) => {
   }
 };
 
+export const deleteContact = async (id) => {
+  await fetch(
+    `https://playground.4geeks.com/contact/agendas/sergio90/contacts/${id}`,
+    {
+      method: 'DELETE'
+    }
+  );
+
+}
