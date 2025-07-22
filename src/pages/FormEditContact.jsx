@@ -1,65 +1,107 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { editContacts } from "../servicesApi/contactsApi";
 import useGlobalReducer from "../hooks/useGlobalReducer";
-import { useEffect } from "react";
 
 export const FormEditContact = () => {
+  const { store, dispatch } = useGlobalReducer()
+  const [editContact, setEditContact] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const { store, dispatch } = useGlobalReducer();
-  const {id} = useParams();
+  const handleChange = (e) => {
+    setEditContact((prev) => ({ ...prev, [e.target.name] : e.target.value }));
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (condition) {
-      
-    }
+    await editContacts(editContact, id, navigate)
 
   }
 
-
-
-  useEffect(()=> {
+   useEffect(() => {
     if (id) {
-      dispatch({
-        type: 'editContact',
-        payload: store.contacts.filter(contact => contact.id === id)[0]})
-      }
-
-  },[id])
-
-
+      // CORREGIDO: usar find() y parseInt()
+      // const contact = store.contacts.find(contact => contact.id === parseInt(id));
+      setEditContact(store.contacts.filter(contact => contact.id == id[0]))
+      
+      // if (contact) {
+      //   // CORREGIDO: contact es un objeto, no un array
+      //   setEditContact({
+      //     name: contact.name,
+      //     email: contact.email,
+      //     phone: contact.phone,
+      //     address: contact.address
+      //   });
+        
+        dispatch({
+          type: "editContact",
+          payload: editContact,
+        });
+      // }
+    }
+  }, [id, store.contacts, dispatch]);
 
   return (
-
     <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3">
       <h3 className="text-center">Introduce los nuevos datos</h3>
 
       <div className="mb-3">
-        <label htmlFor="contactName" className="form-label">
-          Nombre contacto
+        <label htmlFor="name" className="form-label">
+          Nuevo nombre contacto
         </label>
-        <input type="text" className="form-control" name="contactName" />
+        <input
+          onChange={(e) => handleChange(e)}
+          type="text"
+          className="form-control"
+          name="name"
+          value={editContact.name}
+        />
       </div>
 
       <div className="mb-3">
         <label htmlFor="phone" className="form-label">
           Telefono
         </label>
-        <input type="phone" className="form-control" name="phone" />
+        <input
+          onChange={(e) => handleChange(e)}
+          type="text"
+          className="form-control"
+          name="phone"
+          value={editContact.phone}
+        />
       </div>
 
       <div className="mb-3">
         <label htmlFor="email" className="form-label">
           Email
         </label>
-        <input type="email" className="form-control" name="email" />
+        <input
+          onChange={(e) => handleChange(e)}
+          type="email"
+          className="form-control"
+          name="email"
+          value={editContact.email}
+        />
       </div>
 
       <div className="mb-3">
         <label htmlFor="address" className="form-label">
           Dirección
         </label>
-        <input type="address" className="form-control" id="password" />
+        <input
+          onChange={(e) => handleChange(e)}
+          type="text"
+          className="form-control"
+          name="address"
+          value={editContact.address}
+        />
       </div>
 
       <div className="mb-3 form-check">
@@ -74,9 +116,11 @@ export const FormEditContact = () => {
       </div>
 
       <div className=" d-flex justify-content-end">
-        <button type="submit" className="btn btn-primary">
-          Actualizar
-        </button>
+        
+          <button type="submit" className="btn btn-primary">
+            Actualizar
+          </button>
+       
       </div>
     </form>
   );

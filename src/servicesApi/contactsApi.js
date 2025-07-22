@@ -17,28 +17,6 @@ const createAgenda = async () => {
   });
 };
 
-export const editContact = async (id) => {
-  const response = await fetch(
-    `https://playground.4geeks.com/contact/agendas/sergio90/contacts/${id}`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        name: "",
-        phone: "",
-        email: "",
-        address: "",
-      }),
-    }
-  );
-
-  if (response.ok) {
-    getContacts();
-  }
-};
-
 
 export const createContacts = async (newContact) => {
     const response = await fetch('https://playground.4geeks.com/contact/agendas/sergio90/contacts', {
@@ -50,3 +28,22 @@ export const createContacts = async (newContact) => {
         
     })
 }
+
+export const editContacts = async (editContact, id, navigate) => {
+  const response = await fetch(
+    `https://playground.4geeks.com/contact/agendas/sergio90/contacts/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(editContact),
+    }
+  );
+
+  if (response.ok) {
+    getContacts();
+    navigate('/');
+  }
+};
+

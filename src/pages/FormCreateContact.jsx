@@ -2,7 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createContacts } from "../servicesApi/contactsApi";
 
+
 export const FormCreateContact = () => {
+
+ 
   const [newContact, setNewContact] = useState({
     name: '',
     email: '',
@@ -13,7 +16,8 @@ export const FormCreateContact = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setNewContact((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setNewContact((prev) => ({ ...prev, [e.target.name] : e.target.value }));
+   
   };
 
   const handleSubmit = async (e) => {
@@ -33,7 +37,6 @@ export const FormCreateContact = () => {
     navigate("/");
   };
 
-  console.log();
 
 
 
