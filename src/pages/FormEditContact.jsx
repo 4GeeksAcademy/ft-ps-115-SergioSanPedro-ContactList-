@@ -26,26 +26,20 @@ export const FormEditContact = () => {
 
   useEffect(() => {
     if (id) {
-      const contact = setEditContact(store.contacts.filter((contact) => contact.id == id[0]));
-
       
-      dispatch({
-        type: "editContact",
-        payload: editContact,
-      });
+      const contact = store.contacts.find((contact) => contact.id == id);
+      
       
       if (contact) {
-        // 2. Cargar los datos del contacto encontrado (no de editContact)
         setEditContact({
-          name: contact.name || "",
-          email: contact.email || "",
-          phone: contact.phone || "",
-          address: contact.address || "",
+          name: contact.name,
+          email: contact.email,
+          phone: contact.phone,
+          address: contact.address,
         });
       }
-
     }
-  }, [id, store.contacts]);
+}, [id, store.contacts]);
 
   return (
     <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3">
