@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
-import { deleteContact, getContacts } from "../servicesApi/contactsApi";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { deleteContact } from "../servicesApi/contactsApi";
 
 export const Modal = ({ extraerData, contact }) => {
 
-
+  const navigate = useNavigate()
 
     const handleDelete = async () => {
         await deleteContact(contact.id);
         await extraerData();
+        navigate('/');
     }
 
 

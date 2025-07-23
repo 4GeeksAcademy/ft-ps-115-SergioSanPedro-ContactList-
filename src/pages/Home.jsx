@@ -22,7 +22,7 @@ export const Home = () => {
   return (
 
     <div className="text-center mt-5">
-      <h1>Lista de contactos</h1>
+      <h1 className="contact-title">Lista de contactos</h1>
             <div className="container my-5">
               {store.contacts.map((contact, index) => (
                 <Card extraerData={extraerData} key={index} contact={contact} />
