@@ -6,7 +6,7 @@ export const Card = ({ extraerData, contact }) => {
   const [modal, setModal] = useState(false);
 
   return (
-    <article className="card-gradient">
+    <section className="card-gradient">
       <header className="name">
         {contact.name}
       </header>
@@ -43,7 +43,7 @@ export const Card = ({ extraerData, contact }) => {
 
         <Modal extraerData={extraerData} contact={contact} />
       </aside>
-    </article>
+    </section>
   );
 };
                                                                                                                                                                                                                                                                                         

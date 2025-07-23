@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteContact } from "../servicesApi/contactsApi";
 
 export const Modal = ({ extraerData, contact }) => {
@@ -24,10 +24,10 @@ export const Modal = ({ extraerData, contact }) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <div className="modal-content bg-info-subtle">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                Eliminar a {contact.name}?
+              <h1 className="modal-title fs-4" id="staticBackdropLabel">
+                <strong>Eliminar a:</strong> {contact.name}?
               </h1>
               <button
                 type="button"
@@ -36,22 +36,22 @@ export const Modal = ({ extraerData, contact }) => {
                 aria-label="Close"
               />
             </div>
-            <div className="modal-body">Se eliminara para siempre</div>
-            <div className="modal-footer">
-              <Link to={"/"}>
+            <div className="modal-body fs-4">Se borrara para siempre</div>
+            <div className="modal-footer bg-info-subtle">
+              
                 <button
                   type="button"
-                  className="btn btn-secondary"
+                  className="btn bg-success"
                   data-bs-dismiss="modal"
                 >
                   Cerrar
                 </button>
-              </Link>
+            
               <button
                 onClick={handleDelete}
                 data-bs-dismiss="modal"
                 type="button"
-                className="btn btn-danger"
+                className="btn bg-danger"
               >
                 Eliminar
               </button>
@@ -62,3 +62,5 @@ export const Modal = ({ extraerData, contact }) => {
     </>
   );
 };
+
+

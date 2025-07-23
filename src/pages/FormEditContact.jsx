@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { editContacts } from "../servicesApi/contactsApi";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
@@ -20,16 +20,14 @@ export const FormEditContact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     await editContacts(editContact, id, navigate);
   };
 
   useEffect(() => {
     if (id) {
-      
       const contact = store.contacts.find((contact) => contact.id == id);
-      
-      
+
       if (contact) {
         setEditContact({
           name: contact.name,
@@ -39,10 +37,10 @@ export const FormEditContact = () => {
         });
       }
     }
-}, [id, store.contacts]);
+  }, [id, store.contacts]);
 
   return (
-    <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3">
+    <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3 rounded">
       <h3 className="text-center">Introduce los nuevos datos</h3>
 
       <div className="mb-3">
@@ -108,10 +106,13 @@ export const FormEditContact = () => {
         </label>
       </div>
 
-      <div className=" d-flex justify-content-end">
+      <div className=" d-flex justify-content-end gap-2">
         <button type="submit" className="btn btn-primary">
           Actualizar
         </button>
+        <Link to={"/"}>
+          <button className="btn btn-primary btn-danger">Volver</button>
+        </Link>
       </div>
     </form>
   );

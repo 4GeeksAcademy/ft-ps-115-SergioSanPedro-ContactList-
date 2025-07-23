@@ -8,7 +8,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: #1a202c;
   min-height: 100vh;
-  padding: 20px;
+  
 }
 
 
@@ -87,9 +87,10 @@ body {
   display: inline-block;
 }
 
-.container {
+.contact {
   max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 
@@ -115,9 +116,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-.card-gradient:hover {
-  transform: translateY(-3px);
-}
 
 .card-gradient::before {
   content: "";
