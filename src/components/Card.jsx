@@ -7,9 +7,9 @@ export const Card = ({ extraerData, contact }) => {
 
   return (
     <article className="card-gradient">
-      <div className="name">
+      <header className="name">
         {contact.name}
-      </div>
+      </header>
       
       <div className="info-item">
         <span className="icon">📞</span>
@@ -26,7 +26,7 @@ export const Card = ({ extraerData, contact }) => {
         <span><strong>Dirección:</strong> {contact.address}</span>
       </div>
 
-      <div className="actions">
+      <aside className="actions">
         <Link to={`/edit-contact/${contact.id}`}>
           <button className="btn">✏️</button>
         </Link>
@@ -42,7 +42,7 @@ export const Card = ({ extraerData, contact }) => {
         </button>
 
         <Modal extraerData={extraerData} contact={contact} />
-      </div>
+      </aside>
     </article>
   );
 };

@@ -19,7 +19,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-decoration: none; /* ← ESTA LÍNEA quita el subrayado */
   transition: all 0.3s ease;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
@@ -27,10 +26,10 @@ body {
 .navbar-title-gradient:hover {
   transform: translateY(-1px);
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3)) brightness(1.2);
-  text-decoration: none; /* ← También en el hover */
+  text-decoration: none;
 }
 
-/* También puedes aplicarlo al Link completo */
+
 .navbar-title-gradient:focus,
 .navbar-title-gradient:active {
   text-decoration: none;

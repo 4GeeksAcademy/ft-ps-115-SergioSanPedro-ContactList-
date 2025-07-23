@@ -4,7 +4,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark">
       <div className="container">
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none" }}>
           <span className="navbar-title-gradient">Agenda de contactos</span>
         </Link>
         <div className="ml-auto">

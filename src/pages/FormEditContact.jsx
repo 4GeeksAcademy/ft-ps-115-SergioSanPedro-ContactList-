@@ -4,7 +4,7 @@ import { editContacts } from "../servicesApi/contactsApi";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const FormEditContact = () => {
-  const { store, dispatch } = useGlobalReducer()
+  const { store, dispatch } = useGlobalReducer();
   const [editContact, setEditContact] = useState({
     name: "",
     email: "",
@@ -15,27 +15,37 @@ export const FormEditContact = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setEditContact((prev) => ({ ...prev, [e.target.name] : e.target.value }));
+    setEditContact((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    await editContacts(editContact, id, navigate);
+  };
 
-    await editContacts(editContact, id, navigate)
-
-  }
-
-   useEffect(() => {
+  useEffect(() => {
     if (id) {
+      const contact = setEditContact(store.contacts.filter((contact) => contact.id == id[0]));
+
       
-      setEditContact(store.contacts.filter(contact => contact.id == id[0]))
+      dispatch({
+        type: "editContact",
+        payload: editContact,
+      });
       
-        dispatch({
-          type: "editContact",
-          payload: editContact,
+      if (contact) {
+        // 2. Cargar los datos del contacto encontrado (no de editContact)
+        setEditContact({
+          name: contact.name || "",
+          email: contact.email || "",
+          phone: contact.phone || "",
+          address: contact.address || "",
         });
+      }
+
     }
-  }, [id]);
+  }, [id, store.contacts]);
 
   return (
     <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3">
@@ -105,11 +115,9 @@ export const FormEditContact = () => {
       </div>
 
       <div className=" d-flex justify-content-end">
-        
-          <button type="submit" className="btn btn-primary">
-            Actualizar
-          </button>
-       
+        <button type="submit" className="btn btn-primary">
+          Actualizar
+        </button>
       </div>
     </form>
   );
