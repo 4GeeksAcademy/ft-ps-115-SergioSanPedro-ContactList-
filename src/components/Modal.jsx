@@ -36,7 +36,7 @@ export const Modal = ({ extraerData, contact }) => {
                 aria-label="Close"
               />
             </div>
-            <div className="modal-body fs-4">Se borrara para siempre</div>
+            <div className="modal-body fs-4">Se borrará para siempre</div>
             <div className="modal-footer bg-info-subtle">
               
                 <button

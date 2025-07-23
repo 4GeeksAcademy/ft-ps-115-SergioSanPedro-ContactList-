@@ -58,7 +58,7 @@ export const FormEditContact = () => {
 
       <div className="mb-3">
         <label htmlFor="phone" className="form-label">
-          Telefono
+          Teléfono
         </label>
         <input
           onChange={(e) => handleChange(e)}
