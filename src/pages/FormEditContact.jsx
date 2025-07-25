@@ -40,7 +40,7 @@ export const FormEditContact = () => {
   }, [id, store.contacts]);
 
   return (
-    <form onSubmit={handleSubmit} className="container w-50 bg-light my-5 p-3 rounded">
+    <form onSubmit={handleSubmit} className="container w-50 bg-warning my-5 p-3 rounded fw-bold">
       <h3 className="text-center">Introduce los nuevos datos</h3>
 
       <div className="mb-3">

@@ -102,7 +102,7 @@ export const FormCreateContact = () => {
       </div>
 
       <div className="d-flex justify-content-end gap-3">
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-success">
           Crear
         </button>
         <Link to={"/"}>
